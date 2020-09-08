@@ -59,6 +59,7 @@ extension VKPageView{
     
     public func refreshDataSource(){
         guard let tempDataSource = dataSource else {return}
+        
         viewCount = tempDataSource.pageViewNumberOfPageItmesCount()
         titleViewModels = Array.init(tempDataSource.pageViewTitleModels())
         contentViewModels.removeAll()
@@ -69,8 +70,10 @@ extension VKPageView{
                 isFirstTimeLoading.append(false)
             }
         }
+        
         self.titleView.collectionView?.reloadData()
         self.contentView.collectionView?.reloadData()
+        self.selectIndex = 0
     }
     
     func reloadSelectIndex(){
