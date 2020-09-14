@@ -18,6 +18,7 @@ open class VKPageView: UIView {
     
     weak public var dataSource:VKPageDataSource?{ didSet{ refreshDataSource() } }
 
+    var titleStyleManager:VKpageTitleStyleManager?
     
     public var viewCount :Int?
     
@@ -50,6 +51,8 @@ open class VKPageView: UIView {
     }
     
 }
+
+
 // MARK:Private mothod
 extension VKPageView{
 
@@ -57,7 +60,7 @@ extension VKPageView{
         refreshDataSource()
     }
     
-    public func refreshDataSource(){
+    func refreshDataSource(){
         guard let tempDataSource = dataSource else {return}
         
         viewCount = tempDataSource.pageViewNumberOfPageItmesCount()
@@ -92,7 +95,7 @@ extension VKPageView{
             titleView.topAnchor.constraint(equalTo: self.topAnchor),
             titleView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             titleView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            titleView.heightAnchor.constraint(equalToConstant: configure.titleStyle.cellSize.height),
+            titleView.heightAnchor.constraint(equalToConstant: configure.titleConfigure.cellSize.height),
             contentView.topAnchor.constraint(equalTo: titleView.bottomAnchor),
             contentView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             contentView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
@@ -100,13 +103,19 @@ extension VKPageView{
         ])
 
         setupTitileAndContentView()
-        
+        setupTitleSelectStyle()
         reloadData()
     }
     
+    func setupTitleSelectStyle(){
+        guard let styles = configure.titleConfigure.selectStyle else {return}
+        self.titleStyleManager = VKpageTitleStyleManager.init(styles: styles, size: configure.titleConfigure.cellSize)
+        titleView.addSubview(self.titleStyleManager!)
+    }
+    
     func setupTitileAndContentView(){
-        titleView.setupConfigure(with: configure.titleStyle)
-        contentView.setupConfigure(height: (self.size.height-configure.titleStyle.cellSize.height),width:size.width,backgroundColor:configure.contentBackgroundColor)
+        titleView.setupConfigure(with: configure.titleConfigure)
+        contentView.setupConfigure(height: (self.size.height-configure.titleConfigure.cellSize.height),width:size.width,backgroundColor:configure.contentBackgroundColor)
 
         titleView.collectionView!.dataSource = self
         titleView.collectionView!.delegate = self
@@ -141,7 +150,7 @@ extension VKPageView:UICollectionViewDelegate,UICollectionViewDataSource{
         if collectionView.isEqual(titleView.collectionView){
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: titleCellIdentifier, for: indexPath) as! VKPageTitleCollectionCell
             let isSelect = (indexPath.row == selectIndex)
-            cell.update(with: titleViewModels[indexPath.row], isSelect: isSelect,configure:self.configure.titleStyle)
+            cell.update(with: titleViewModels[indexPath.row], isSelect: isSelect,configure:self.configure.titleConfigure)
             return cell
         }else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: contentCellIndentifier, for: indexPath) as! VKPageContentCollectionCell
@@ -166,6 +175,17 @@ extension VKPageView:UICollectionViewDelegate,UICollectionViewDataSource{
 
 // MARK:UIScrollViewDelegate
 extension VKPageView:UIScrollViewDelegate{
+    
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard let titleManager = self.titleStyleManager,scrollView.isEqual(contentView.collectionView) else {return}
+        let offset = scrollView.contentOffset.x/scrollView.contentSize.width*titleView.collectionView!.contentSize.width
+        var newFrame = titleManager.frame
+        newFrame.origin.x = offset
+        UIView.animate(withDuration: 0) {
+            titleManager.frame = newFrame
+        }
+    }
+    
     public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
 
     }
@@ -175,7 +195,7 @@ extension VKPageView:UIScrollViewDelegate{
             return
         }
         let translation = scrollView.panGestureRecognizer.translation(in: scrollView.superview)
-        // 向右边滑动
+        
         var nextIndex = 0
         if translation.x < 0{
             if self.selectIndex == (self.contentViewModels.count - 1){

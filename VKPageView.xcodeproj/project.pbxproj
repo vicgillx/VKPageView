@@ -13,6 +13,8 @@
 		0895A71C2507210500FFA5AD /* VKPageTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0895A71B2507210500FFA5AD /* VKPageTitleView.swift */; };
 		0895A71E2507211900FFA5AD /* VKPageViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0895A71D2507211900FFA5AD /* VKPageViewDelegate.swift */; };
 		0895A72525075A9E00FFA5AD /* VKPageViewConfigure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0895A72425075A9E00FFA5AD /* VKPageViewConfigure.swift */; };
+		08A2289A250F101B009E8253 /* VKPageTitleStyleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A22899250F101B009E8253 /* VKPageTitleStyleManager.swift */; };
+		08A2289C250F15BD009E8253 /* VKPageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A2289B250F15BD009E8253 /* VKPageView+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		0895A71B2507210500FFA5AD /* VKPageTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKPageTitleView.swift; sourceTree = "<group>"; };
 		0895A71D2507211900FFA5AD /* VKPageViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKPageViewDelegate.swift; sourceTree = "<group>"; };
 		0895A72425075A9E00FFA5AD /* VKPageViewConfigure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKPageViewConfigure.swift; sourceTree = "<group>"; };
+		08A22899250F101B009E8253 /* VKPageTitleStyleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKPageTitleStyleManager.swift; sourceTree = "<group>"; };
+		08A2289B250F15BD009E8253 /* VKPageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VKPageView+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,9 +63,11 @@
 				0895A6E925071F1700FFA5AD /* VKPageView.h */,
 				0895A717250720D400FFA5AD /* VKPageView.swift */,
 				0895A72425075A9E00FFA5AD /* VKPageViewConfigure.swift */,
+				08A22899250F101B009E8253 /* VKPageTitleStyleManager.swift */,
 				0895A719250720F200FFA5AD /* VKPageContentView.swift */,
 				0895A71B2507210500FFA5AD /* VKPageTitleView.swift */,
 				0895A71D2507211900FFA5AD /* VKPageViewDelegate.swift */,
+				08A2289B250F15BD009E8253 /* VKPageView+Extension.swift */,
 				0895A6EA25071F1700FFA5AD /* Info.plist */,
 			);
 			path = Sources;
@@ -149,6 +155,8 @@
 			files = (
 				0895A71A250720F200FFA5AD /* VKPageContentView.swift in Sources */,
 				0895A72525075A9E00FFA5AD /* VKPageViewConfigure.swift in Sources */,
+				08A2289C250F15BD009E8253 /* VKPageView+Extension.swift in Sources */,
+				08A2289A250F101B009E8253 /* VKPageTitleStyleManager.swift in Sources */,
 				0895A718250720D400FFA5AD /* VKPageView.swift in Sources */,
 				0895A71C2507210500FFA5AD /* VKPageTitleView.swift in Sources */,
 				0895A71E2507211900FFA5AD /* VKPageViewDelegate.swift in Sources */,

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-public struct VKPageViewTitleConfigure{
+public class VKPageViewTitleConfigure{
     //label configure
     public var textNormolColor = UIColor.init(red: 107.0/255.0, green: 106.0/255.0, blue: 163.0/255.0, alpha: 1)
     public var textSelectColor = UIColor.init(red: 255.0/255.0, green: 0, blue: 64.0/255.0,alpha: 1)
@@ -21,11 +21,15 @@ public struct VKPageViewTitleConfigure{
     public var cellSize = CGSize.init(width: 80, height: 44)
     //full titleView
     public var backgroundColor = UIColor.clear
+    
     public var backgroundLayer :CALayer?
+    
+    public var selectStyle:[VKpageTitleStyle]?
+    
     public init(){}
 }
-public struct VKPageViewConfigure{
-    var titleStyle = VKPageViewTitleConfigure.init()
-    var contentBackgroundColor = UIColor.clear
+public class VKPageViewConfigure{
+    public var titleConfigure = VKPageViewTitleConfigure.init()
+    public var contentBackgroundColor = UIColor.clear
     public init(){}
 }

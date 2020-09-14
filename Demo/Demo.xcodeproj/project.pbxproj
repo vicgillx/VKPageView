@@ -13,7 +13,7 @@
 		0895A70525071FFB00FFA5AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0895A70325071FFB00FFA5AD /* Main.storyboard */; };
 		0895A70725071FFD00FFA5AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0895A70625071FFD00FFA5AD /* Assets.xcassets */; };
 		0895A70A25071FFD00FFA5AD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0895A70825071FFD00FFA5AD /* LaunchScreen.storyboard */; };
-		0895A72125072DB700FFA5AD /* VKPageView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0895A72025072DB700FFA5AD /* VKPageView.framework */; };
+		08A22898250F0F9D009E8253 /* VKPageView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08A22897250F0F9D009E8253 /* VKPageView.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +25,7 @@
 		0895A70625071FFD00FFA5AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0895A70925071FFD00FFA5AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0895A70B25071FFD00FFA5AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0895A72025072DB700FFA5AD /* VKPageView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = VKPageView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		08A22897250F0F9D009E8253 /* VKPageView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = VKPageView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,7 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0895A72125072DB700FFA5AD /* VKPageView.framework in Frameworks */,
+				08A22898250F0F9D009E8253 /* VKPageView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,7 +74,7 @@
 		0895A71F25072DB600FFA5AD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0895A72025072DB700FFA5AD /* VKPageView.framework */,
+				08A22897250F0F9D009E8253 /* VKPageView.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -299,6 +299,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				INFOPLIST_FILE = Demo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -318,6 +319,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				INFOPLIST_FILE = Demo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
