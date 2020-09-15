@@ -21,6 +21,8 @@ public class VKPageTitleView: UIView {
         
         self.configure = configure
         
+        self.backgroundColor = configure.backgroundColor
+        
         let layout = UICollectionViewFlowLayout.init()
         
         layout.itemSize = configure.cellSize
@@ -36,7 +38,7 @@ public class VKPageTitleView: UIView {
         
         self.collectionView!.register(VKPageTitleCollectionCell.self, forCellWithReuseIdentifier: titleCellIdentifier)
         
-        self.collectionView!.backgroundColor = configure.backgroundColor
+        self.collectionView!.backgroundColor = UIColor.clear
         
         self.collectionView!.isScrollEnabled = true
         
