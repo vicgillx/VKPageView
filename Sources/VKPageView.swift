@@ -22,6 +22,8 @@ open class VKPageView: UIView {
     
     public var viewCount :Int?
     
+    public var shouldResetSelectIndexWhenReload = false
+    
     var titleViewModels:[String] = Array.init()
     
     var contentViewModels:[UIView] = Array.init()
@@ -76,7 +78,9 @@ extension VKPageView{
         
         self.titleView.collectionView?.reloadData()
         self.contentView.collectionView?.reloadData()
-        self.selectIndex = 0
+        if shouldResetSelectIndexWhenReload{
+            self.selectIndex = 0
+        }
     }
     
     func reloadSelectIndex(){
