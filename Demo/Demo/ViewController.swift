@@ -21,12 +21,17 @@ class ViewController: UIViewController {
         refreshButton.setTitleColor(UIColor.blue, for: .normal)
         view.addSubview(refreshButton)
         let config = VKPageViewConfigure()
+        let size = CGSize.init(width: view.bounds.width, height: config.titleConfigure.cellSize.height)
+        let layer = CAGradientLayer.init( startColor: UIColor.init(red: 50, green: 13, blue: 66), endColor: UIColor.init(red: 29, green: 31, blue: 84), size:size )
+        config.titleConfigure.backgroundLayer = layer
         let lineColor = UIColor.init(red: 20.0/255.0, green: 239.0/255.0, blue: 251.0/255.0, alpha: 1)
         config.titleConfigure.selectStyle = [VKpageTitleStyle.line(lineColor, 10, true),VKpageTitleStyle.image(UIImage.init(named: "active_g"), CGSize.init(width: 90, height: 40))]
         config.titleConfigure.backgroundColor = UIColor.init(red: 14.0/255.0, green: 15.0/255.0, blue: 63.0/255.0, alpha: 1)
         
         pageView = VKPageView.init(frame: CGRect.init(x: 0, y: 140, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height-140), configure: config)
-        
+        pageView?.addSideButtonForTitle(size: CGSize.init(width: 80, height: 30), image: UIImage.init(named: "active_g"), direction: .left, action: {
+            
+        })
         view.addSubview(pageView!)
 
         pageView?.dataSource = self
@@ -51,7 +56,6 @@ extension ViewController:VKPageViewDelegate{
     func pageViewWillShowWhenDraggingContent(to row: Int) {
         print("will show index = \(row)")
     }
-    
     
 }
 

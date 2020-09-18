@@ -114,7 +114,7 @@ extension VKPageView{
     func setupTitleSelectStyle(){
         guard let styles = configure.titleConfigure.selectStyle else {return}
         self.titleStyleManager = VKpageTitleStyleManager.init(styles: styles, size: configure.titleConfigure.cellSize)
-        titleView.addSubview(self.titleStyleManager!)
+        titleView.collectionView?.addSubview(self.titleStyleManager!)
     }
     
     func setupTitileAndContentView(){

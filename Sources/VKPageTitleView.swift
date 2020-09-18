@@ -21,6 +21,10 @@ public class VKPageTitleView: UIView {
         
         self.configure = configure
         
+        if let backLayer = configure.backgroundLayer{
+            self.layer.insertSublayer(backLayer, at: 0)
+        }
+        
         self.backgroundColor = configure.backgroundColor
         
         let layout = UICollectionViewFlowLayout.init()
@@ -43,10 +47,6 @@ public class VKPageTitleView: UIView {
         self.collectionView!.isScrollEnabled = true
         
         self.collectionView!.showsHorizontalScrollIndicator = false
-        
-        if let backLayer = configure.backgroundLayer{
-            self.collectionView!.layer.addSublayer(backLayer)
-        }
         
         self.addSubview(collectionView!)
         self.leftCollectionConstraint = self.collectionView!.leftAnchor.constraint(equalTo: self.leftAnchor)

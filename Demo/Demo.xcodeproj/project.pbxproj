@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0856747E25148B5E009ECA3B /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856747D25148B5E009ECA3B /* Extension.swift */; };
 		0895A6FE25071FFB00FFA5AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0895A6FD25071FFB00FFA5AD /* AppDelegate.swift */; };
 		0895A70025071FFB00FFA5AD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0895A6FF25071FFB00FFA5AD /* SceneDelegate.swift */; };
 		0895A70225071FFB00FFA5AD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0895A70125071FFB00FFA5AD /* ViewController.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0856747D25148B5E009ECA3B /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		0895A6FA25071FFB00FFA5AD /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0895A6FD25071FFB00FFA5AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0895A6FF25071FFB00FFA5AD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				0895A6FD25071FFB00FFA5AD /* AppDelegate.swift */,
 				0895A6FF25071FFB00FFA5AD /* SceneDelegate.swift */,
 				0895A70125071FFB00FFA5AD /* ViewController.swift */,
+				0856747D25148B5E009ECA3B /* Extension.swift */,
 				0895A70325071FFB00FFA5AD /* Main.storyboard */,
 				0895A70625071FFD00FFA5AD /* Assets.xcassets */,
 				0895A70825071FFD00FFA5AD /* LaunchScreen.storyboard */,
@@ -153,6 +156,7 @@
 				0895A70225071FFB00FFA5AD /* ViewController.swift in Sources */,
 				0895A6FE25071FFB00FFA5AD /* AppDelegate.swift in Sources */,
 				0895A70025071FFB00FFA5AD /* SceneDelegate.swift in Sources */,
+				0856747E25148B5E009ECA3B /* Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
