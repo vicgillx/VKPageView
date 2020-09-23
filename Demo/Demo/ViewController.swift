@@ -29,9 +29,12 @@ class ViewController: UIViewController {
         config.titleConfigure.backgroundColor = UIColor.init(red: 14.0/255.0, green: 15.0/255.0, blue: 63.0/255.0, alpha: 1)
         
         pageView = VKPageView.init(frame: CGRect.init(x: 0, y: 140, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height-140), configure: config)
-        pageView?.addSideButtonForTitle(size: CGSize.init(width: 80, height: 30), image: UIImage.init(named: "active_g"), direction: .left, action: {
-            
-        })
+        
+        pageView = VKPageView.init(height: UIScreen.main.bounds.height)
+        //是否添加titielview左右两边的按钮
+//        pageView?.addSideButtonForTitle(size: CGSize.init(width: 80, height: 30), image: UIImage.init(named: "buttonImage"), direction: .left, action: {
+//
+//        })
         view.addSubview(pageView!)
 
         pageView?.dataSource = self
