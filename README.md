@@ -11,9 +11,8 @@ VKPageView 是一个纯Swift的`PageView`框架,完全使用原生`AutoLayout`�
 ## Demo
 请使用`VKPageView.xcwrokspace`来运行
 
-<img src="https://github.com/vicgillx/VKPageView/tree/master/Gif/normal.gif" width="30%" height="30%">
-<img src="https://github.com/vicgillx/VKPageView/tree/master/Gif/leftButton.gif" width="30%" height="30%">
-
+![](https://tva1.sinaimg.cn/large/007S8ZIlgy1gj0lsab6alg30am0ji7wm.gif)
+![](https://tva1.sinaimg.cn/large/007S8ZIlgy1gj0ltxb07ng309k0kahdu.gif)
 ## Requirements
 - iOS 10.0+
 - Xcode 11+
