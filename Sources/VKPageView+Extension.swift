@@ -14,6 +14,8 @@ extension CAShapeLayer{
         
         self.path = bezier.cgPath
         
+        self.lineWidth = lineWidth
+        
         self.fillColor = fillColor.cgColor
         
         self.strokeColor = strokeColor.cgColor

@@ -1,10 +1,22 @@
 
 import UIKit
 
+public struct VKpageTitleStyleLine{
+    public var color = UIColor.red
+    public var margin:CGFloat = 0
+    public var lineWidth:CGFloat = 2
+    public var isShadowAvailable = false
+    public init(color:UIColor = .red,margin:CGFloat = 0,lineWidth:CGFloat = 2,isShadow:Bool = false) {
+        self.color = color
+        self.margin = margin
+        self.lineWidth = lineWidth
+        self.isShadowAvailable = isShadow
+    }
+}
 public enum VKpageTitleStyle{
     case none
-    //  (line color,margin,is shadow available)
-    case line(UIColor,CGFloat,Bool)
+    //  (line color,margin,lineWidth,is shadow available)
+    case line(VKpageTitleStyleLine)
     // ( image,image size )
     case image(UIImage?,CGSize)
 }
@@ -17,21 +29,26 @@ public class VKpageTitleStyleManager:UIView{
         return imageView
     }()
     
+    public var hadAnimation = true
+    
+    var offsetY:CGFloat = 0
+    
     var bottomSingleLine:CALayer?
     
-    init(styles:[VKpageTitleStyle],size:CGSize) {
+    public init(styles:[VKpageTitleStyle],size:CGSize,offsetY:CGFloat = 0) {
         super.init(frame: CGRect.init(origin: CGPoint.zero, size: size))
         backgroundColor = UIColor.clear
         isUserInteractionEnabled = false
+        self.offsetY = offsetY
         self.types.append(contentsOf: styles)
         setup()
     }
     
-    public static func view(with styles:[VKpageTitleStyle]?,size:CGSize)->VKpageTitleStyleManager?{
+    public static func view(with styles:[VKpageTitleStyle]?,size:CGSize,offsetY:CGFloat = 0)->VKpageTitleStyleManager?{
         guard  let typs = styles else {
             return nil
         }
-        return VKpageTitleStyleManager.init(styles: typs, size: size)
+        return VKpageTitleStyleManager.init(styles: typs, size: size,offsetY: offsetY)
     }
     
     func setup(){
@@ -42,17 +59,18 @@ public class VKpageTitleStyleManager:UIView{
                 bottomImageView.translatesAutoresizingMaskIntoConstraints = false
                 bottomImageView.image = image
                 NSLayoutConstraint.activate([
-                    bottomImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
+                    bottomImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -offsetY),
                     bottomImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0),
                     bottomImageView.widthAnchor.constraint(equalToConstant: size.width),
                     bottomImageView.heightAnchor.constraint(equalToConstant: size.height)
                 ])
-            case .line(let lineColor, let margin, let isHadShadow):
-                let start = CGPoint.init(x: margin, y: bounds.height-1)
-                let end = CGPoint.init(x: bounds.width - margin, y: bounds.height-1)
-                bottomSingleLine = CAShapeLayer.init(from: start, to: end, strokeColor: lineColor, fillColor: lineColor,lineWidth: 2)
-                if isHadShadow{
-                    bottomSingleLine?.shadowColor = lineColor.cgColor
+            case .line(let style):
+                let y = bounds.height-style.lineWidth/2-offsetY
+                let start = CGPoint.init(x: style.margin, y: y)
+                let end = CGPoint.init(x: bounds.width - style.margin, y: y)
+                bottomSingleLine = CAShapeLayer.init(from: start, to: end, strokeColor: style.color, fillColor: style.color,lineWidth: style.lineWidth)
+                if style.isShadowAvailable{
+                    bottomSingleLine?.shadowColor = style.color.cgColor
                     bottomSingleLine?.shadowOpacity = 0.7
                     bottomSingleLine?.shadowRadius = 5
                 }

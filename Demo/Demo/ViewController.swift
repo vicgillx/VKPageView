@@ -13,33 +13,60 @@ class ViewController: UIViewController {
     var isChangeDataSource = false
     override func viewDidLoad() {
         super.viewDidLoad()
+        addPageView()
+        addRefreshButton()
         // Do any additional setup after loading the view.
-        let refreshButton = UIButton.init(type: .custom)
-        refreshButton.frame = CGRect.init(x: 0, y: 40.0, width: UIScreen.main.bounds.width, height: 100)
-        refreshButton.setTitle("点击我刷新数据源", for: .normal)
-        refreshButton.addTarget(self, action: #selector(refreshButtonClick), for: .touchUpInside)
-        refreshButton.setTitleColor(UIColor.blue, for: .normal)
-        view.addSubview(refreshButton)
+        
+    }
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("height = \(view.safeAreaInsets.top+view.safeAreaInsets.bottom)")
+    }
+
+    
+    func addPageView(){
         let config = VKPageViewConfigure()
         let size = CGSize.init(width: view.bounds.width, height: config.titleConfigure.cellSize.height)
         let layer = CAGradientLayer.init( startColor: UIColor.init(red: 50, green: 13, blue: 66), endColor: UIColor.init(red: 29, green: 31, blue: 84), size:size )
         config.titleConfigure.backgroundLayer = layer
-        let lineColor = UIColor.init(red: 20.0/255.0, green: 239.0/255.0, blue: 251.0/255.0, alpha: 1)
-        config.titleConfigure.selectStyle = [VKpageTitleStyle.line(lineColor, 10, true),VKpageTitleStyle.image(UIImage.init(named: "active_g"), CGSize.init(width: 90, height: 40))]
+        config.titleConfigure.selectStyle = VKpageTitleStyleManager.init(styles: [VKpageTitleStyle.line(VKpageTitleStyleLine.init())], size: config.titleConfigure.cellSize)
         config.titleConfigure.backgroundColor = UIColor.init(red: 14.0/255.0, green: 15.0/255.0, blue: 63.0/255.0, alpha: 1)
-        
-        pageView = VKPageView.init(frame: CGRect.init(x: 0, y: 140, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height-140), configure: config)
-        
-        pageView = VKPageView.init(height: UIScreen.main.bounds.height)
+        let safeViewHeight = view.bounds.height - 81
+        //指定pageView的高度，宽度为固定的screenWidth,没发现需要更改的场景 所以宽度固定
+        pageView = VKPageView.init(height: safeViewHeight,configure: config)
         //是否添加titielview左右两边的按钮
 //        pageView?.addSideButtonForTitle(size: CGSize.init(width: 80, height: 30), image: UIImage.init(named: "buttonImage"), direction: .left, action: {
 //
 //        })
         view.addSubview(pageView!)
-
+        pageView?.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            pageView!.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            pageView!.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            pageView!.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            pageView!.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
         pageView?.dataSource = self
         pageView?.delegate = self
     }
+    
+    func addRefreshButton(){
+        let refreshButton = UIButton.init(type: .custom)
+        refreshButton.frame = CGRect.zero
+        refreshButton.setTitle("刷新数据源", for: .normal)
+        refreshButton.addTarget(self, action: #selector(refreshButtonClick), for: .touchUpInside)
+        refreshButton.setTitleColor(UIColor.blue, for: .normal)
+        view.addSubview(refreshButton)
+        refreshButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            refreshButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,constant: -50),
+            refreshButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: -50),
+        ])
+    }
+    
+    
     @objc func refreshButtonClick(){
         isChangeDataSource = !isChangeDataSource
         pageView!.reloadData()

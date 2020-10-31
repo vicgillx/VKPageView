@@ -86,8 +86,11 @@ extension VKPageView{
     func reloadSelectIndex(){
         contentView.collectionView?.scrollToItem(at: IndexPath.init(row: selectIndex, section: 0), at: .centeredHorizontally, animated: false)
         delegate?.pageViewDidShow(at :selectIndex)
+        if let titleStyle = titleStyleManager,!titleStyle.hadAnimation{
+            titleStyle.frame.origin.x = configure.titleConfigure.cellSize.width * CGFloat(selectIndex)
+        }
         self.titleView.collectionView?.reloadData()
-        contentView.collectionView?.reloadData()
+       // contentView.collectionView?.reloadData()
     }
     
     func setupConfigure(){
@@ -113,8 +116,8 @@ extension VKPageView{
     
     func setupTitleSelectStyle(){
         guard let styles = configure.titleConfigure.selectStyle else {return}
-        self.titleStyleManager = VKpageTitleStyleManager.init(styles: styles, size: configure.titleConfigure.cellSize)
-        titleView.collectionView?.addSubview(self.titleStyleManager!)
+        self.titleStyleManager = styles
+        titleView.insertSubview(styles, at: 0)
     }
     
     func setupTitileAndContentView(){
@@ -181,13 +184,17 @@ extension VKPageView:UICollectionViewDelegate,UICollectionViewDataSource{
 extension VKPageView:UIScrollViewDelegate{
     
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        guard let titleManager = self.titleStyleManager,scrollView.isEqual(contentView.collectionView) else {return}
+        guard let titleManager = self.titleStyleManager,scrollView.isEqual(contentView.collectionView),titleManager.hadAnimation else {return}
         let offset = scrollView.contentOffset.x/scrollView.contentSize.width*titleView.collectionView!.contentSize.width
         var newFrame = titleManager.frame
         newFrame.origin.x = offset
-        UIView.animate(withDuration: 0) {
-            titleManager.frame = newFrame
-        }
+        titleManager.frame = newFrame
+        
+
+    }
+    
+    public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+
     }
     
     public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {

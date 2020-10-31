@@ -24,7 +24,7 @@ public class VKPageViewTitleConfigure{
     
     public var backgroundLayer :CALayer?
     
-    public var selectStyle:[VKpageTitleStyle]?
+    public var selectStyle:VKpageTitleStyleManager?
     
     public init(){}
 }
