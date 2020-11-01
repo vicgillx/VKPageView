@@ -57,14 +57,14 @@ class VKPageContentCollectionCell: UICollectionViewCell {
     
     var content:UIView?
     
-    func setupConfigure(with subView:UIView){
+    func setupConfigure(with subView:UIView,margin:CGFloat){
         self.contentView.addSubview(subView)
         content = subView
         subView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             subView.topAnchor.constraint(equalTo: self.contentView.topAnchor),
-            subView.leftAnchor.constraint(equalTo: self.contentView.leftAnchor),
-            subView.rightAnchor.constraint(equalTo: self.contentView.rightAnchor),
+            subView.leftAnchor.constraint(equalTo: self.contentView.leftAnchor,constant: margin),
+            subView.rightAnchor.constraint(equalTo: self.contentView.rightAnchor,constant: -margin),
             subView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor)
         ])
     }

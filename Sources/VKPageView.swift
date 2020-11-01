@@ -165,7 +165,7 @@ extension VKPageView:UICollectionViewDelegate,UICollectionViewDataSource{
                 subView.removeFromSuperview()
             }
             let collectionView = contentViewModels[indexPath.row]
-            cell.setupConfigure(with: collectionView)
+            cell.setupConfigure(with: collectionView,margin:configure.contentSideMargin)
             return cell
         }
 

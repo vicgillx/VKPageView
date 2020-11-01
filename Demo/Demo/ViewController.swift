@@ -28,6 +28,8 @@ class ViewController: UIViewController {
     
     func addPageView(){
         let config = VKPageViewConfigure()
+        //每个page里待展示的view 距边框的距离,默认为0
+        config.contentSideMargin = 20
         let size = CGSize.init(width: view.bounds.width, height: config.titleConfigure.cellSize.height)
         let layer = CAGradientLayer.init( startColor: UIColor.init(red: 50, green: 13, blue: 66), endColor: UIColor.init(red: 29, green: 31, blue: 84), size:size )
         config.titleConfigure.backgroundLayer = layer

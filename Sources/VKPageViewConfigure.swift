@@ -31,5 +31,7 @@ public class VKPageViewTitleConfigure{
 public class VKPageViewConfigure{
     public var titleConfigure = VKPageViewTitleConfigure.init()
     public var contentBackgroundColor = UIColor.clear
+    //待展示的pageview的两边边距
+    public var contentSideMargin:CGFloat = 0
     public init(){}
 }
