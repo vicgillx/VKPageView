@@ -19,6 +19,9 @@ VKPageView 是一个纯Swift的`PageView`框架,完全使用原生`AutoLayout`�
 - swift 5.0+
 
 ## Installation
+### Cocoapods
+`pod 'VKPageView`
+
 ### Carthage
 [Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks. To integrate VKPageView into your Xcode project using Carthage
 
