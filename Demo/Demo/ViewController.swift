@@ -33,7 +33,8 @@ class ViewController: UIViewController {
         let size = CGSize.init(width: view.bounds.width, height: config.titleConfigure.cellSize.height)
         let layer = CAGradientLayer.init( startColor: UIColor.init(red: 50, green: 13, blue: 66), endColor: UIColor.init(red: 29, green: 31, blue: 84), size:size )
         config.titleConfigure.backgroundLayer = layer
-        config.titleConfigure.selectStyle = VKpageTitleStyleManager.init(styles: [VKpageTitleStyle.line(VKpageTitleStyleLine.init())], size: config.titleConfigure.cellSize)
+        let underLine = VKpageTitleStyle.line(VKpageTitleStyleLine.init(color: .white, margin: 5,lineWidth: 8))
+        config.titleConfigure.selectStyle = VKpageTitleStyleManager.init(styles: [underLine], size: config.titleConfigure.cellSize)
         config.titleConfigure.backgroundColor = UIColor.init(red: 14.0/255.0, green: 15.0/255.0, blue: 63.0/255.0, alpha: 1)
         let safeViewHeight = view.bounds.height - 81
         //指定pageView的高度，宽度为固定的screenWidth,没发现需要更改的场景 所以宽度固定
