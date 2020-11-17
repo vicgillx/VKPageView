@@ -49,6 +49,7 @@ public class VKPageTitleView: UIView {
         self.collectionView!.showsHorizontalScrollIndicator = false
         
         self.addSubview(collectionView!)
+        
         self.leftCollectionConstraint = self.collectionView!.leftAnchor.constraint(equalTo: self.leftAnchor)
         self.rightCollectionConstraint = self.collectionView!.rightAnchor.constraint(equalTo: self.rightAnchor)
         collectionView?.translatesAutoresizingMaskIntoConstraints = false
@@ -132,7 +133,7 @@ class VKPageTitleCollectionCell: UICollectionViewCell {
     
     func setup(){
         titleLabel.font = UIFont.systemFont(ofSize: 13)
-        titleLabel.backgroundColor  = UIColor.clear
+        titleLabel.backgroundColor  = .clear
         titleLabel.textColor = UIColor.init(red: 107.0/255.0, green: 106.0/255.0, blue: 163.0/255.0, alpha: 1)
         titleLabel.text = ""
         titleLabel.textAlignment = .center

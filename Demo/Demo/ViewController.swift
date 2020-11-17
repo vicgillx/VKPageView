@@ -23,6 +23,7 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         print("height = \(view.safeAreaInsets.top+view.safeAreaInsets.bottom)")
+        pageView?.selectIndex = titles.count - 1
     }
 
     
@@ -34,7 +35,8 @@ class ViewController: UIViewController {
         let layer = CAGradientLayer.init( startColor: UIColor.init(red: 50, green: 13, blue: 66), endColor: UIColor.init(red: 29, green: 31, blue: 84), size:size )
         config.titleConfigure.backgroundLayer = layer
         let underLine = VKpageTitleStyle.line(VKpageTitleStyleLine.init(color: .white, margin: 5,lineWidth: 8))
-        config.titleConfigure.selectStyle = VKpageTitleStyleManager.init(styles: [underLine], size: config.titleConfigure.cellSize)
+        let image = VKpageTitleStyle.image(UIImage.init(named: "active_g"), CGSize.init(width: 80, height: 40))
+        config.titleConfigure.selectStyle = VKpageTitleStyleManager.init(styles: [underLine,image], size: config.titleConfigure.cellSize,offsetY: 0)
         config.titleConfigure.backgroundColor = UIColor.init(red: 14.0/255.0, green: 15.0/255.0, blue: 63.0/255.0, alpha: 1)
         let safeViewHeight = view.bounds.height - 81
         //指定pageView的高度，宽度为固定的screenWidth,没发现需要更改的场景 所以宽度固定
@@ -76,8 +78,8 @@ class ViewController: UIViewController {
     }
 }
 
-let titles = ["swift","object-c","ruby","go","python"]
-let clos = [UIColor.red,UIColor.black,UIColor.yellow,UIColor.green,UIColor.blue]
+let titles = ["swift","object-c","ruby","go","python","xxxx","yyrt"]
+let clos = [UIColor.red,UIColor.black,UIColor.yellow,UIColor.green,UIColor.blue,.brown,.blue]
 let titles2 = ["a1","a2","a3","a4"]
 let clos2 = [UIColor.yellow,UIColor.gray,UIColor.black,UIColor.red]
 

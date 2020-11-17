@@ -12,7 +12,11 @@ open class VKPageView: UIView {
     
     var isFirstTimeLoading :[Bool] = Array.init()
         
-    public var selectIndex:Int = 0 { didSet{ reloadSelectIndex() } }
+    public var selectIndex:Int = 0 {
+        didSet{
+            reloadSelectIndex()
+        }
+    }
     
     weak public var delegate:VKPageViewDelegate?
     
@@ -75,22 +79,28 @@ extension VKPageView{
                 isFirstTimeLoading.append(false)
             }
         }
-        
+        self.selectIndex = 0
         self.titleView.collectionView?.reloadData()
         self.contentView.collectionView?.reloadData()
-        if shouldResetSelectIndexWhenReload{
-            self.selectIndex = 0
-        }
+        
+//        if shouldResetSelectIndexWhenReload{
+//
+//        }
     }
     
     func reloadSelectIndex(){
-        contentView.collectionView?.scrollToItem(at: IndexPath.init(row: selectIndex, section: 0), at: .centeredHorizontally, animated: false)
+        let index = IndexPath.init(row: selectIndex, section: 0)
+        guard index.row < titleViewModels.count else { return }
+        contentView.collectionView?.scrollToItem(at: index, at: .centeredHorizontally, animated: false)
         delegate?.pageViewDidShow(at :selectIndex)
-        if let titleStyle = titleStyleManager,!titleStyle.hadAnimation{
+        if let titleStyle = titleStyleManager{
+            CATransaction.begin()
+            CATransaction.setDisableActions(true)
             titleStyle.frame.origin.x = configure.titleConfigure.cellSize.width * CGFloat(selectIndex)
+            CATransaction.commit()
         }
         self.titleView.collectionView?.reloadData()
-       // contentView.collectionView?.reloadData()
+        self.titleView.collectionView?.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
     }
     
     func setupConfigure(){
@@ -117,8 +127,10 @@ extension VKPageView{
     func setupTitleSelectStyle(){
         guard let styles = configure.titleConfigure.selectStyle else {return}
         self.titleStyleManager = styles
-        titleView.collectionView?.addSubview(styles)
-        //titleView.addSubview()
+        //titleView.collectionView?.insertSubview(styles, at: 0)
+       // titleView.collectionView?.backgroundView?.layer.insertSublayer(styles, at: 0)
+        titleView.collectionView?.layer.insertSublayer(styles, at: 0)
+        
     }
     
     func setupTitileAndContentView(){
@@ -175,7 +187,7 @@ extension VKPageView:UICollectionViewDelegate,UICollectionViewDataSource{
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView.isEqual(titleView.collectionView){
             self.selectIndex = indexPath.row
-            titleView.collectionView?.reloadData()
+//            titleView.collectionView?.reloadData()
         }
     }
 
@@ -189,9 +201,10 @@ extension VKPageView:UIScrollViewDelegate{
         let offset = scrollView.contentOffset.x/scrollView.contentSize.width*titleView.collectionView!.contentSize.width
         var newFrame = titleManager.frame
         newFrame.origin.x = offset
+        CATransaction.begin()
+        CATransaction.setDisableActions(true)
         titleManager.frame = newFrame
-        
-
+        CATransaction.commit()
     }
     
     public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
