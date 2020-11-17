@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'VKPageView'
-  s.version      = '1.1.3'
+  s.version      = '1.1.5'
   s.license = 'MIT'
   s.requires_arc = true
   s.source = { :git => 'https://github.com/vicgillx/VKPageView.git', :tag => s.version.to_s }
